@@ -17,7 +17,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     init {
         val noteDao = NotesDatabase.getDatabaseInstance(application)?.getNoteDAO()
         repo = noteDao?.let { NotesRepo(notesDao = it) }
-
+        allData = repo?.allData
     }
 
     //Function to add note to the database
