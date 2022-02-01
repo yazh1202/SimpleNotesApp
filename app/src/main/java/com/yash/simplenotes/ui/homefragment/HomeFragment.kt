@@ -6,15 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yash.simplenotes.R
-import com.yash.simplenotes.database.NoteData
+import com.yash.simplenotes.database.Date
 import com.yash.simplenotes.databinding.FragmentHomeBinding
 import com.yash.simplenotes.viewmodels.HomeViewModel
+
+const val DTAG = "HOMEFRAGMENT"
 
 class HomeFragment : Fragment() {
     val viewModel: HomeViewModel by activityViewModels()
@@ -31,7 +33,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-        val adapter = NotesRecylerViewAdapter()
+        val adapter = NotesRecylerViewAdapter(moveToDetails)
         binding.apply {
             addButton.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_addNoteFragment)
@@ -39,17 +41,16 @@ class HomeFragment : Fragment() {
             notesList.layoutManager = LinearLayoutManager(requireContext())
             notesList.adapter = adapter
         }
-        viewModel.allData?.observe(viewLifecycleOwner, {
+        viewModel.allData?.observe(viewLifecycleOwner) {
             adapter.setData(it)
-            for (data in it) {
-                Log.d("HOMEFRAGMENT", data.title)
-            }
-        })
+        }
+        Log.d(DTAG, Date.getDate())
         return binding.root
     }
 
-    val move: () -> Unit = {
-        findNavController().navigate(R.id.action_homeFragment_to_addNoteFragment)
+    val moveToDetails: (String, String) -> Unit = { s: String, s1: String ->
+        val bundle = bundleOf("Title" to s, "Text" to s1)
+        findNavController().navigate(R.id.action_homeFragment_to_detailsFragment, bundle)
     }
 
 }

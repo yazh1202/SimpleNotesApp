@@ -1,5 +1,7 @@
 package com.yash.simplenotes.database
 
+import androidx.lifecycle.LiveData
+
 class NotesRepo(private val notesDao: NotesDAO) {
     val allData = notesDao.getData()
     suspend fun addNote(note: NoteData) {
@@ -9,4 +11,8 @@ class NotesRepo(private val notesDao: NotesDAO) {
     fun deleteAll() {
         notesDao.deleteAll()
     }
+//
+//    suspend fun getNote(id: Int): LiveData<NoteData> {
+//        return notesDao.getNote(id)
+//    }
 }

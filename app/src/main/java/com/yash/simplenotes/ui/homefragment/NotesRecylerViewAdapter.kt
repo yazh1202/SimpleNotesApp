@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.yash.simplenotes.database.NoteData
 import com.yash.simplenotes.databinding.NotesitemBinding
 
-class NotesRecylerViewAdapter :
+class NotesRecylerViewAdapter(val action: (String, String) -> Unit) :
     RecyclerView.Adapter<NotesRecylerViewAdapter.NotesViewHolder>() {
     private var noteList = emptyList<NoteData>()
 
@@ -64,10 +64,11 @@ class NotesRecylerViewAdapter :
         val note = noteList[position]
         holder.itemBindnig.apply {
             noteTitle.text = note.title
-            NoteText.text = note.note
+            val noteText = note.note
+            NoteText.text = noteText
         }
         holder.itemView.setOnClickListener {
-
+            action(note.title, note.note)
         }
     }
 
