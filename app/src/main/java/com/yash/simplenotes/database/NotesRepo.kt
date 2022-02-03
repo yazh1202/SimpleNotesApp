@@ -11,8 +11,12 @@ class NotesRepo(private val notesDao: NotesDAO) {
     fun deleteAll() {
         notesDao.deleteAll()
     }
-//
+
+    //
 //    suspend fun getNote(id: Int): LiveData<NoteData> {
 //        return notesDao.getNote(id)
 //    }
+    suspend fun updateNote(note: NoteData) {
+        notesDao.updateNote(note)
+    }
 }

@@ -10,9 +10,11 @@ import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yash.simplenotes.R
 import com.yash.simplenotes.database.Date
+import com.yash.simplenotes.database.NoteData
 import com.yash.simplenotes.databinding.FragmentHomeBinding
 import com.yash.simplenotes.viewmodels.HomeViewModel
 
@@ -48,8 +50,10 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    val moveToDetails: (String, String) -> Unit = { s: String, s1: String ->
-        val bundle = bundleOf("Title" to s, "Text" to s1)
+    private val moveToDetails: (NoteData?) -> Unit = { noteD: NoteData? ->
+        val action =
+            HomeFragmentDirections.actionHomeFragmentToDetailsFragment().apply { note = noteD }
+        val bundle = bundleOf("Note" to noteD)
         findNavController().navigate(R.id.action_homeFragment_to_detailsFragment, bundle)
     }
 

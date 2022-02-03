@@ -10,7 +10,7 @@
         <entry key="app/src/main/res/layout/fragment_add_note.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_details.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/notesitem.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/notesitem.xml" value="0.5" />
       </map>
     </option>
   </component>

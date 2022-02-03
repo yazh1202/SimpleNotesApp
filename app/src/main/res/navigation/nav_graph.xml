@@ -26,5 +26,11 @@
         android:id="@+id/detailsFragment"
         android:name="com.yash.simplenotes.ui.detailsfragment.DetailsFragment"
         android:label="DetailsFragment"
-        tools:layout="@layout/fragment_details"/>
+        tools:layout="@layout/fragment_details">
+        <argument
+            app:nullable="true"
+            android:name="note"
+            android:defaultValue="@null"
+            app:argType="com.yash.simplenotes.database.NoteData" />
+    </fragment>
 </navigation>

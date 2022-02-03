@@ -3,46 +3,98 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:orientation="vertical">-->
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/showTitle"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:paddingStart="8dp"-->
+    <!--            android:paddingTop="8dp"-->
+    <!--            android:paddingEnd="8dp"-->
+    <!--            android:paddingBottom="8dp"-->
+    <!--            tools:text="Title" />-->
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/date"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_weight="0"-->
+    <!--            tools:text="22/12/12 12:00PM" />-->
+
+    <!--        <ScrollView-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:layout_weight="1"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toBottomOf="@+id/showTitle">-->
+
+    <!--            <TextView-->
+    <!--                android:id="@+id/showText"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:paddingStart="4dp"-->
+    <!--                android:paddingTop="4dp"-->
+    <!--                android:paddingEnd="4dp"-->
+    <!--                android:paddingBottom="4dp"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toBottomOf="@+id/showTitle"-->
+    <!--                tools:text="@string/sampleText" />-->
+    <!--        </ScrollView>-->
+    <!--    </LinearLayout>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/showTitle"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:paddingStart="8dp"
-            android:paddingTop="8dp"
-            android:paddingEnd="8dp"
-            android:paddingBottom="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Title" />
+            android:layout_weight=".005"
+            android:elevation="5dp">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight=".8"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/showTitle">
-
-            <TextView
-                android:id="@+id/showText"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/noteTitleDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/showTitle"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                tools:text="Title" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/dateCreated"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            tools:text="@string/date" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/noteTextDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top"
                 tools:text="@string/sampleText" />
-        </ScrollView>
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 </layout>

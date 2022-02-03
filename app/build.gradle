@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'org.jetbrains.kotlin.kapt'
-    id 'androidx.navigation.safeargs.kotlin'
+    id 'androidx.navigation.safeargs'
     id 'kotlin-parcelize'
 }
 
@@ -52,7 +52,7 @@ dependencies {
 
     //Navigation Dependencies
     //Kotlin
-    var nav_version = "2.3.5"
+    var nav_version = "2.4.0"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation 'androidx.core:core-ktx:1.7.0'
