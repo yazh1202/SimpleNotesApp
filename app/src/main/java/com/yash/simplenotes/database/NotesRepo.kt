@@ -8,7 +8,7 @@ class NotesRepo(private val notesDao: NotesDAO) {
         notesDao.insertNote(note = note)
     }
 
-    fun deleteAll() {
+    suspend fun deleteAll() {
         notesDao.deleteAll()
     }
 

@@ -26,10 +26,18 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             repo?.addNote(note = noteData)
         }
     }
+
     //Function to update the note
     fun updateNote(note: NoteData) {
         viewModelScope.launch(Dispatchers.IO) {
             repo?.updateNote(note = note)
+        }
+    }
+
+    //Function to delete all notes from the db
+    fun deleteAllNotes() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repo?.deleteAll()
         }
     }
 }

@@ -15,7 +15,7 @@ interface NotesDAO {
 
     //Deleting all from the table
     @Query("DELETE FROM NotesTable")
-    fun deleteAll()
+    suspend fun deleteAll()
 
     //Selecting a particular note
 //     @Query("SELECT * FROM NotesTable WHERE id IS (:id) ")
