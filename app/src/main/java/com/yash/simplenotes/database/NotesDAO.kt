@@ -16,10 +16,10 @@ interface NotesDAO {
     //Deleting all from the table
     @Query("DELETE FROM NotesTable")
     suspend fun deleteAll()
-
-    //Selecting a particular note
-//     @Query("SELECT * FROM NotesTable WHERE id IS (:id) ")
-//     suspend fun getNote(id:Int):LiveData<NoteData>
+    //Function to delete all notes from the database
     @Update(onConflict = OnConflictStrategy.IGNORE)
     suspend fun updateNote(note: NoteData)
+    //Function to delete a particular note
+    @Delete
+    suspend fun deleteNote(note:NoteData)
 }

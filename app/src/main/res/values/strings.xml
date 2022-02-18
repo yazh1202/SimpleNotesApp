@@ -3,11 +3,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_note">Add To the Notes</string>
-    <string name="hintStringNote">This is a good place to start out</string>
+    <string name="hintStringNote">This is a good place to start</string>
     <string name="sampleText">
 What is Lorem Ipsum?
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
 </string>
     <string name="datePrefix">Date Created:- %s</string>
     <string name="date">22/02/2022 12:00 AM</string>
+    <string name="delete_note">Delete Note</string>
+    <string name="save_note">Save Note</string>
 </resources>

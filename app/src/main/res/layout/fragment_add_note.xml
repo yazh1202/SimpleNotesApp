@@ -34,7 +34,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/NoteTitle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textAlignment="gravity"
+                tools:text="Somethinges"
+                android:gravity="center|start" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
