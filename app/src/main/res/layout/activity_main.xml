@@ -21,7 +21,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/mytoolbar"
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/toolbar_border"
@@ -29,7 +29,7 @@
                 android:textSize="12sp"
                 android:theme="?attr/actionBarTheme"
                 app:menu="@menu/toolbar_menu"
-                app:titleTextColor="?android:attr/textColor" />
+                app:titleTextColor="?android:attr/textColor"/>
         </com.google.android.material.appbar.AppBarLayout>
 
 

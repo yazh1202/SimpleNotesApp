@@ -1,25 +1,18 @@
 package com.yash.simplenotes.ui.detailsfragment
 
 import android.os.Bundle
-import android.text.Editable
 import android.util.Log
 import android.view.*
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.yash.simplenotes.R
-import com.yash.simplenotes.database.Date
 import com.yash.simplenotes.database.NoteData
 import com.yash.simplenotes.databinding.FragmentDetailsBinding
-import com.yash.simplenotes.ui.homefragment.HomeFragmentDirections
 import com.yash.simplenotes.viewmodels.HomeViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 
 const val DTAG = "DETAILSFRAGMENT"
 
@@ -33,6 +26,10 @@ class DetailsFragment : Fragment() {
     private lateinit var _binding: FragmentDetailsBinding
     val binding
         get() = _binding
+
+    //Always use by navArgs() delegate not arguments
+    val args: DetailsFragmentArgs by navArgs()
+
     /**
      * Called to do initial creation of a fragment.  This is called after
      * [.onAttach] and before
@@ -66,7 +63,8 @@ class DetailsFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_details, container, false)
         binding.apply {
-            val note: NoteData? = arguments?.get("Note") as NoteData?
+            val note: NoteData? = args.note
+            Log.d(DTAG, note?.note.toString())
             if (note != null) {
                 dateCreated.text = getString(R.string.datePrefix, note.date)
                 noteTextDetail.setText(note.note)
@@ -105,19 +103,16 @@ class DetailsFragment : Fragment() {
             findNavController().navigateUp()
             return true
         }
-        if(id==R.id.saveNote){
-            val note: NoteData? = arguments?.get("Note") as NoteData?
+        if (id == R.id.saveNote) {
+            val note: NoteData? = args.note
             if (note != null) {
-                val noteD = NoteData(
-                    note.id,
-                    binding.noteTitleDetail.text.toString(),
-                    binding.noteTextDetail.text.toString(),
-                    date = Date.getDate()
-                )
-                if(binding.noteTitleDetail.text.toString()==""){
-                    Toast.makeText(context,"Title Cannot be empty",Toast.LENGTH_SHORT).show()
-                }else {
-                    viewModel.updateNote(note = noteD)
+                val updatedNote = createNote(note.id, note.date)
+                if (binding.noteTitleDetail.text.toString() == "") {
+                    Toast.makeText(context, "Title Cannot be empty", Toast.LENGTH_SHORT).show()
+                } else {
+                    if (updatedNote != null) {
+                        viewModel.updateNote(updatedNote)
+                    }
                     findNavController().navigateUp()
                 }
             }
@@ -125,6 +120,7 @@ class DetailsFragment : Fragment() {
         }
         return false
     }
+
     /**
      * Called when the view previously created by [.onCreateView] has
      * been detached from the fragment.  The next time the fragment needs
@@ -135,20 +131,33 @@ class DetailsFragment : Fragment() {
      * been saved but before it has been removed from its parent.
      */
     override fun onDestroyView() {
-        val note: NoteData? = arguments?.get("Note") as NoteData?
+        val note: NoteData? = args.note
+        val updatedNote = createNote(note?.id, note?.date)
         if (note != null) {
-            val noteD = NoteData(
-                note.id,
-                binding.noteTitleDetail.text.toString(),
-                binding.noteTextDetail.text.toString(),
-                date = Date.getDate()
-            )
-            if(binding.noteTitleDetail.text.toString() != ""){
-                viewModel.updateNote(note = noteD)
-            }else{
-                Toast.makeText(context, "Empty title! Note not saved", Toast.LENGTH_SHORT).show()
+            if (binding.noteTitleDetail.text.toString().isNotEmpty()) {
+                if (updatedNote != null && !isUpdated(note, updatedNote)) {
+                    viewModel.updateNote(updatedNote)
+                }
+            } else {
+                Toast.makeText(context, "Empty title! Note not saved", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
+        Log.d(DTAG, "${note?.note}}")
         super.onDestroyView()
     }
+
+    private fun isUpdated(note: NoteData, updatedNote: NoteData): Boolean =
+        (note.note == updatedNote.note && note.title == updatedNote.title)
+
+
+    fun createNote(id: Int?, date: String?): NoteData? =
+        id?.let {
+            NoteData(
+                it,
+                binding.noteTitleDetail.text.toString(),
+                binding.noteTextDetail.text.toString(),
+                date = date
+            )
+        }
 }

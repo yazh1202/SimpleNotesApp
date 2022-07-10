@@ -14,6 +14,8 @@ abstract class NotesDatabase : RoomDatabase() {
     companion object {
         @Volatile
         private var INSTANCE: NotesDatabase? = null
+
+        //Creating an instance
         fun getDatabaseInstance(context: Context): NotesDatabase? {
             if (INSTANCE != null) {
                 return INSTANCE
@@ -27,7 +29,6 @@ abstract class NotesDatabase : RoomDatabase() {
                 INSTANCE = instance
                 return INSTANCE
             }
-
         }
     }
 }

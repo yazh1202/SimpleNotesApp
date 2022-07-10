@@ -15,11 +15,17 @@ interface NotesDAO {
 
     //Deleting all from the table
     @Query("DELETE FROM NotesTable")
-    suspend fun deleteAll()
+    fun deleteAll()
+
     //Function to delete all notes from the database
     @Update(onConflict = OnConflictStrategy.IGNORE)
     suspend fun updateNote(note: NoteData)
+
     //Function to delete a particular note
     @Delete
-    suspend fun deleteNote(note:NoteData)
+    suspend fun deleteNote(note: NoteData)
+
+    //Function to search things
+    @Query("SELECT * FROM notestable WHERE title LIKE :searchQuery or note LIKE :searchQuery")
+    fun searchNotes(searchQuery: String): LiveData<List<NoteData>>
 }

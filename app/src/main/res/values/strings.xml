@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">SimpleNotes</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_note">Add To the Notes</string>
     <string name="hintStringNote">This is a good place to start</string>
     <string name="sampleText">
@@ -12,4 +10,5 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
     <string name="date">22/02/2022 12:00 AM</string>
     <string name="delete_note">Delete Note</string>
     <string name="save_note">Save Note</string>
+    <string name="settin">SETTINGS_PREF</string>
 </resources>

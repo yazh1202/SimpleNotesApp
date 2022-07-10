@@ -1,7 +1,6 @@
 package com.yash.simplenotes.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Delete
 
 class NotesRepo(private val notesDao: NotesDAO) {
     val allData = notesDao.getData()
@@ -18,9 +17,14 @@ class NotesRepo(private val notesDao: NotesDAO) {
     suspend fun updateNote(note: NoteData) {
         notesDao.updateNote(note)
     }
+
     //Function to delete a particular note
     suspend fun deleteNote(note: NoteData) {
         notesDao.deleteNote(note)
     }
 
+    //Function to search the database
+    fun searchDatabas(query: String): LiveData<List<NoteData>> {
+        return notesDao.searchNotes(query)
+    }
 }

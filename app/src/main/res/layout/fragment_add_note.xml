@@ -8,17 +8,6 @@
         android:layout_height="match_parent"
         android:text="">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/saveButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:clickable="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_save" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
             android:layout_width="match_parent"
@@ -36,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="gravity"
-                tools:text="Somethinges"
+                tools:text="@string/add_note"
                 android:gravity="center|start" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -55,11 +44,12 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/NoteText"
+                android:hint="Note"
+                tools:text="@string/sampleText"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:cursorVisible="true"
                 android:gravity="top|start"
-                android:hint="@string/hintStringNote"
                 android:inputType="textCapSentences|textNoSuggestions|textMultiLine"
                 android:minLines="2" />
         </com.google.android.material.textfield.TextInputLayout>
