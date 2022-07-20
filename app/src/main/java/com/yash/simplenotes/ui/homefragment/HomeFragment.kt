@@ -1,20 +1,22 @@
 package com.yash.simplenotes.ui.homefragment
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.edit
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yash.simplenotes.R
 import com.yash.simplenotes.database.NoteData
 import com.yash.simplenotes.databinding.FragmentHomeBinding
 import com.yash.simplenotes.viewmodels.HomeViewModel
-
-const val DTAG = "HOMEFRAGMENT"
 
 class HomeFragment : Fragment() {
     val viewModel: HomeViewModel by activityViewModels()
@@ -22,10 +24,12 @@ class HomeFragment : Fragment() {
     private lateinit var _binding: FragmentHomeBinding
     val binding: FragmentHomeBinding
         get() = _binding
-
+    private var pref: SharedPreferences? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
         super.onCreate(savedInstanceState)
+        //Always initialize sharedpreferences in onCreate in fragments
+        pref = activity?.getSharedPreferences("SETTINGS", Context.MODE_PRIVATE)
     }
 
     //To inflate the toolbar menu with context
@@ -41,9 +45,28 @@ class HomeFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.clear_all -> viewModel.deleteAllNotes()
+            R.id.layoutGrid -> changeToGrid()
+            R.id.layoutLinear -> changeToLinear()
         }
         return true
     }
+
+    private fun changeToLinear() {
+        binding.notesList.layoutManager = LinearLayoutManager(requireContext())
+        pref?.edit {
+            putString("LAYOUT", "LINEAR")
+            commit()
+        }
+    }
+
+    private fun changeToGrid() {
+        binding.notesList.layoutManager = GridLayoutManager(requireContext(), 2)
+        pref?.edit {
+            putString("LAYOUT", "GRID")
+            commit()
+        }
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -108,8 +131,13 @@ class HomeFragment : Fragment() {
     private fun setUpRecyclerView() {
         val adapter = NotesRecylerViewAdapter(moveToDetails)
         rvAdapter = adapter
+        val layoutState = pref?.getString("LAYOUT", "GRID")
         binding.apply {
-            notesList.layoutManager = LinearLayoutManager(requireContext())
+            notesList.layoutManager =
+                if (layoutState == "LINEAR") LinearLayoutManager(requireContext()) else GridLayoutManager(
+                    requireContext(),
+                    2
+                )
             notesList.adapter = rvAdapter
         }
     }

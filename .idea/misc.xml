@@ -13,7 +13,8 @@
         <entry key="app/src/main/res/layout/fragment_add_note.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_details.xml" value="0.45472061657032753" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/notesitem.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_layout_picker_dialog.xml" value="0.3260416666666667" />
+        <entry key="app/src/main/res/layout/notesitem.xml" value="0.5" />
         <entry key="app/src/main/res/menu/details_menu.xml" value="0.3260416666666667" />
         <entry key="app/src/main/res/menu/toolbar_menu.xml" value="0.3260416666666667" />
       </map>

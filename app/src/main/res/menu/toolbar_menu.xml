@@ -5,13 +5,26 @@
         android:id="@+id/clear_all"
         android:icon="@drawable/ic_clear_all"
         android:title="Delete All"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
     <item
         android:id="@+id/search"
         android:icon="@android:drawable/ic_menu_search"
         android:title="Search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         android:iconifiedByDefault="false"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/layoutPicker"
+        android:title="Notes Layout"
+        app:actionViewClass="android.widget.TextView">
+        <menu>
+            <item android:id="@+id/layoutGrid"
+                android:icon="@drawable/grid_icon_24"
+                android:title="Grid" />
+            <item android:id="@+id/layoutLinear"
+                android:icon="@drawable/linear_icon_24"
+                android:title="Linear" />
+        </menu>
+    </item>
 
 </menu>
